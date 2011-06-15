@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hotspots"  default="_buildZip" basedir="../">
+	<property file="builds/build.properties" />
+
+	<target name="setup-properties" description="Set up version and build properties">
+                <!-- Initialize the build.date timestamp -->
+		<tstamp>
+			<format property="build.date" pattern="%Y-%m-%d" />
+		</tstamp>
+	</target>
+	
+	<target name="_preparedirs" depends="setup-properties">
+		<mkdir dir="${destination.dir}"/>
+<!--		<mkdir dir="${destination.dir}/packages"/>-->
+	</target>
+	
+	<target name="_buildZip" depends="_build, _buildMedia" description="">
+		<zip destfile="${destination.dir}/${component.name}${component.version}.zip" basedir="${destination.dir.component}"  />
+	</target>
+
+	<target name="_build" depends="_preparedirs" description="">
+		<!-- move the folders to com_hotspots, but leave the files in ${component.name} in the root -->
+		<copy todir="${destination.dir.component}/administrator/components/${component.name}/">
+			<fileset dir="${project.basedir}/administrator/components/${component.name}" >
+				<include name="**/*.*"/>
+				<exclude name="*.*" />
+				<exclude name="nbproject" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${destination.dir.component}/" >
+			<fileset dir="${project.basedir}/administrator/components/${component.name}">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+		
+		<!-- build admin language files -->
+		<copy todir="${destination.dir.component}/administrator/language/" >
+			<fileset dir="${project.basedir}/administrator/language/" includes="**/*.${component.name}.ini"/>
+			<fileset dir="${project.basedir}/administrator/language/" includes="**/*.${component.name}.sys.ini"/>
+		</copy>
+		
+		<!-- write the version number -->
+		<copy file="${project.basedir}/administrator/components/${component.name}/manifest.xml" 
+		tofile="${destination.dir.component}/manifest.xml" overwrite="true">
+			<filterchain>
+				<replacetokens begintoken="##" endtoken="##">
+					<token key="DATE" value="${build.date}" />
+					<token key="VERSION" value="${component.version}" />
+				</replacetokens>                                
+			</filterchain>
+		</copy>
+	</target>
+
+	<target name="_buildMedia" depends="_preparedirs" description="">
+		<copy todir="${destination.dir.component}/media/${component.name}" >
+			<fileset dir="${project.basedir}/media/${component.name}" >
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+	</target>
+	
+</project>
