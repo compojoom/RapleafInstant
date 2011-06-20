@@ -12,6 +12,8 @@
 	<administration>
 		<files folder="administrator/components/com_rapleaf">
 			<folder>controllers</folder>
+			<folder>databases</folder>
+			<folder>libraries</folder>
 			<folder>models</folder>
 			<folder>views</folder>
 		</files>
