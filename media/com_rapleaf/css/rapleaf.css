@@ -1,0 +1,146 @@
+#age,
+#gender,
+#map{
+	float: left;
+	margin-right: 10px;
+}
+
+#rapleaf-generate-report {
+	width: 200px;
+	height: 200px;
+	cursor: pointer;
+	display: block;
+	background: orange;
+	margin: auto;
+}
+
+.rapleaf-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 9998;
+}
+
+.rapleaf-close {
+	width: 16px;
+	height: 16px;
+	background: url('../images/close.png') no-repeat;
+	z-index: 9999;
+	position: absolute;
+	top: 6px;
+	right: 5px;
+	display: block;
+	cursor: pointer;
+}
+
+.rapleaf-report-info {
+	background: #FFF;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.65);
+    color: #000000;
+    font: 12px/18px arial,sans-serif;
+    height: 100%;
+    margin: 0 6px;
+    overflow: auto;
+    padding: 5px;
+    position: relative;
+}
+
+.rapleaf-report-container {
+	background-color: rgba(160, 160, 160, 0.4);
+    border: 1px solid #000000;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0 0 0 1px #EEEEEE inset, 0 0 15px rgba(0, 0, 0, 0.9);
+    height: 146px;
+    left: 555px;
+    padding-bottom: 46px;
+    position: absolute;
+    top: 125px;
+    width: 389px;
+    z-index: 1;
+}
+
+.rapleaf-title {
+    color: #000000;
+    font: 12px/16px "Segoe UI",Arial,sans-serif;
+    height: 16px;
+    overflow: hidden;
+    padding: 6px 0 6px 28px;
+    text-shadow: 0 0 1px #FFFFFF, 3px 3px 5px #FFFFFF, -3px -3px 5px #FFFFFF, -3px 3px 5px #FFFFFF, 3px -3px 5px #FFFFFF;
+    white-space: nowrap;
+	margin: 0;
+}
+
+.rapleaf-report-container div.spinner {
+	top: 15px;
+	left: 15px;
+	position: relative;
+}
+
+span.fadein {
+	opacity: 0;
+	display: block;	
+	color: #000000;
+}
+
+.not-available {
+	opacity: 0.5;
+}
+
+.up {
+	background: url('../images/up.png') no-repeat;
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+}
+
+.down {
+	background: url('../images/down.png') no-repeat;
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+}
+
+.equal {
+	background: url('../images/equal.png') no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.top td {
+	border-top: 1px solid #000;
+}
+
+.charts {
+	float: left;
+	width: 500px;
+}
+
+.charts div {
+	margin-bottom: 20px;
+}
+
+.icon-32-csv {
+	background: url('../images/csv_text.png') no-repeat;
+}
+
+.icon-48-users {
+	background: url('../images/users.png') no-repeat;
+}
+
+.icon-48-rapleaf {
+	background: url('../images/dashboard.png') no-repeat;
+}
+
+.icon-32-rerportGenerator {
+	background: url('../images/report_add.png') no-repeat;
+}

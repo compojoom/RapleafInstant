@@ -45,6 +45,7 @@
  * an HTTP response code other than 200 is sent back
  * The error code and error body are displayed
  */
+defined('_JEXEC') or die('restricted access');
 
 class RapleafApiBulk {
 
@@ -52,13 +53,16 @@ class RapleafApiBulk {
 	private static $handle;
 	private static $API_KEY = "0bc82d24058fbbd4bfdee227c4a2db1a";
 
-	public function __construct() {
+	public function __construct()
+	{
 		self::$handle = curl_init();
 		curl_setopt(self::$handle, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt(self::$handle, CURLOPT_TIMEOUT, 2.0);
+		curl_setopt(self::$handle, CURLOPT_TIMEOUT, 30);
 		curl_setopt(self::$handle, CURLOPT_SSL_VERIFYPEER, FALSE);
 		curl_setopt(self::$handle, CURLOPT_USERAGENT, "RapleafApi/PHP5/1.1");
-		curl_setopt(self::$handle, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt(self::$handle, CURLOPT_HTTPHEADER, array(
+			'Content-Type: application/json',
+			"Expect"));
 	}
 
 	/**
@@ -70,15 +74,22 @@ class RapleafApiBulk {
 	 * @param $body = array();
 	 * @return json
 	 */
-	public function getJsonResponse($body = array()) {
+	public function getJsonResponse($body = array())
+	{
 		$url = self::$BASE_PATH . self::$API_KEY;
 		curl_setopt(self::$handle, CURLOPT_URL, $url);
 		curl_setopt(self::$handle, CURLOPT_POST, 1);
 		curl_setopt(self::$handle, CURLOPT_POSTFIELDS, json_encode($body));
+
 		$json_string = curl_exec(self::$handle);
 		$response_code = curl_getinfo(self::$handle, CURLINFO_HTTP_CODE);
 
 		if ($response_code < 200 || $response_code >= 300) {
+//			log the response code and json_string for debuging
+			jimport('joomla.error.log');
+			$log = &JLog::getInstance('com_rapleaf.log.php');
+			$log->addEntry(array('comment' => $response_code . ' ' . $json_string));
+//			throw an exception
 			throw new Exception("Error Code: " . $response_code . "\nError Body: " . $json_string);
 		} else {
 			$personalization = json_decode($json_string, TRUE);

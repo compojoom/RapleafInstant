@@ -1,46 +1,80 @@
 <?php
+defined('_JEXEC') or die('Restricted access');
+JHTML::_('behavior.mootools');
+JHTML::stylesheet(JURI::root() . 'media/com_rapleaf/css/rapleaf.css');
 
-var_dump($users->getData());
+JToolBarHelper::title(JText::_('COM_RAPLEAF_USERS'), 'users.png');
+JToolBarHelper::custom('csvExport','csv.png','','CSV', false);
 
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
-<form action="<?= @route() ?>" method="get" class="-koowa-grid">
+<script type="text/javascript">
+	Joomla.submitbutton = function(task)
+	{
+		if (task == 'csvExport') {
+			Joomla.submitform(task,document.getElementById('admin-form'));
+			document.id('task').set('value','');
+			return;
+		}
+		Joomla.submitform(task,document.getElementById('admin-form'));
+	}
+	
+</script>
+
+<form action="" name="adminForm" method="post" id="admin-form">
+	<fieldset id="filter-bar">
+		<div class="filter-search fltlft">
+			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
+			<input type="text" name="search" id="search" value="<?php echo $this->lists['search']; ?>" title="<?php echo JText::_('COM_RAPLEAF_FILTER_SEARCH_DESC'); ?>" />
+
+			<button type="submit" class="btn"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
+			<button type="button" onclick="document.id('search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+		</div>
+	</fieldset>
 <table class="adminlist">
 	<thead>
-
 		<tr>
-			<th width="8%"></th>
-			<th >
-				<?= @helper('grid.sort', array('column' => 'name')); ?>
+			<td colspan="3">
+				<?php //echo JHtml::_('grid.search');?>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				Gravatar
 			</th>
 			<th >
-				<?= @helper('grid.sort', array('column' => 'username')); ?>
+				<?php echo  JHtml::_('grid.sort',  'COM_RAPLEAF_NAME', 'name', $listDirn, $listOrder); ?>
 			</th>
 			<th >
-				<?= @helper('grid.sort', array('column' => 'email')); ?>
+				<?php echo  JHtml::_('grid.sort', 'COM_RAPLEAF_USERNAME', 'username', $listDirn, $listOrder); ?>
 			</th>
 			<th >
-				<?= @helper('grid.sort', array('column' => 'age')); ?>
+				<?php echo  JHtml::_('grid.sort', 'COM_RAPLEAF_EMAIL', 'email', $listDirn, $listOrder); ?>
 			</th>
 			<th >
-				<?= @helper('grid.sort', array('column' => 'gender')); ?>
+				<?php echo  JHtml::_('grid.sort', 'COM_RAPLEAF_AGE', 'age', $listDirn, $listOrder); ?>
 			</th>
 			<th >
-				<?= @helper('grid.sort', array('column' => 'location')); ?>
+				<?php echo  JHtml::_('grid.sort', 'COM_RAPLEAF_GENDER', 'gender', $listDirn, $listOrder); ?>
 			</th>
 			<th >
-				<?= @helper('grid.sort', array('column' => 'household_income')); ?>
+				<?php echo  JHtml::_('grid.sort', 'COM_RAPLEAF_LOCATION', 'location', $listDirn, $listOrder); ?>
 			</th>
-			<th >
-				<?= @helper('grid.sort', array('column' => 'children')); ?>
+			<th class="not-available">
+				<?php echo  JText::_('COM_RAPLEAF_INCOME'); ?>
 			</th>
-			<th >
-				<?= @helper('grid.sort', array('column' => 'marital_status')); ?>
+			<th class="not-available">
+				<?php echo  JText::_('COM_RAPLEAF_CHILDREN'); ?>
 			</th>
-			<th >
-				<?= @helper('grid.sort', array('column' => 'education')); ?>
+			<th class="not-available">
+				<?php echo  JText::_('COM_RAPLEAF_MARITIAL_STATUS'); ?>
 			</th>
-			<th >
-				<?= @helper('grid.sort', array('column' => 'occupation')); ?>
+			<th class="not-available">
+				<?php echo  JText::_('COM_RAPLEAF_EDUCATION'); ?>
+			</th>
+			<th class="not-available">
+				<?php echo  JText::_('COM_RAPLEAF_OCCUPATION'); ?>
 			</th>
 		</tr>
 	</thead>
@@ -48,62 +82,77 @@ var_dump($users->getData());
 	
 		
 	<tbody>
-	<? foreach ($users as $user) : ?>
+		<?php $i = 0; ?>
+	<?php foreach ($this->users as $user) : ?>
+		<?php
+			$gravatarEmail = md5( strtolower(trim($user->email)) );
+		
+		?>
 		<tr>
 			<td align="center">
-				<?= @helper('grid.checkbox' , array('row' => $user)); ?>
+				<a href="http://www.gravatar.com/<?php echo $gravatarEmail; ?>" target="_blank">
+					<img src="http://www.gravatar.com/avatar/<?php echo $gravatarEmail; ?>?s=32" alt="gravatar" />
+				</a>
 			</td>
 			<td align="left">    					
-				<?=$user->name?>
+				<?php echo $user->name?>
 			</td>
 			<td align="username">    					
-				<?=$user->username?>
+				<?php echo $user->username?>
+			</td>
+			<td align="username">
+				<a href="mailto:<?php echo $user->email; ?>">
+					<?php echo $user->email?>
+				</a>
 			</td>
 			<td align="username">    					
-				<?=$user->email?>
+				<?php echo $user->age?>
 			</td>
-			<td align="username">    					
-				<?=$user->age?>
-			</td>
-			<td align="left">    					
-				<?=$user->gender?>
-			</td>
-			<td align="left">    					
-				<?=$user->location?>
+			<td align="center">
+				<?php if($user->gender == 1) : ?>
+					<img src="<?php echo JURI::root() ?>/media/com_rapleaf/images/man.png" alt="male" />
+				<?php elseif($user->gender == 2) : ?>
+					<img src="<?php echo JURI::root() ?>/media/com_rapleaf/images/woman.png" alt="female" />
+				<?php endif; ?>
 			</td>
 			<td align="left">    					
-				<?=$user->household_income?>
+				<?php echo $user->location?>
 			</td>
-			<td align="left">    					
-				<?=$user->children?>
+			<td align="left" class="not-available">    					
+				<?php //echo $user->household_income?>
 			</td>
-			<td align="left">    					
-				<?=$user->marital_status?>
+			<td align="left" class="not-available">    					
+				<?php //echo $user->children ?>
 			</td>
-			<td align="left">    					
-				<?=$user->education?>
+			<td align="left" class="not-available">    					
+				<?php //echo $user->marital_status?>
 			</td>
-			<td align="left">    					
-				<?=$user->occupation?>
+			<td align="left" class="not-available">    					
+				<?php //echo $user->education?>
+			</td>
+			<td align="left" class="not-available">    					
+				<?php //echo $user->occupation?>
 			</td>
 		</tr>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 
-	<? if (!count($users)) : ?>
+	<?php if (!count($this->users)) : ?>
 		<tr>
 			<td colspan="20" align="center">
-				<?= @text('No Items Found'); ?>
+				<?php echo JText::_('No Items Found'); ?>
 			</td>
 		</tr>
-	<? endif; ?>	
+	<?php endif; ?>	
 	</tbody>	
 	
 	<tfoot>
            <tr>
                 <td colspan="13">
-					 <?= @helper('paginator.pagination', array('total' => $total)) ?>
+					 <?php echo $this->pagination->getListFooter(); ?>
                 </td>
 			</tr>
 	</tfoot>
 </table>
+	<input type="hidden" id="task" name="task" value="" />
+	<input type="hidden" name="view" value="users" />
 </form>

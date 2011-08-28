@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="1.6.0" method="upgrade">
+<install type="component" version="1.5" method="upgrade">
 	<name>Rapleaf</name>
-	<author>Freakedout</author>
+	<author>Compojoomla</author>
 	<creationDate>2011-06-15</creationDate>
-	<copyright>(C) 2011 Freakedout. All rights reserved.	</copyright>
+	<copyright>(C) 2011 Compojoom.com All rights reserved.	</copyright>
 	<license>GNU General Public License version 2 or later; see	LICENSE.txt</license>
 	<authorEmail>services@compojoom.com</authorEmail>
-	<authorUrl>http://freakedout.de</authorUrl>
+	<authorUrl>http://compojoom.com</authorUrl>
 	<version>0.1</version>
 	<description>COM_RAPLEAF_XML_DESCRIPTION</description>
 	<administration>
+		<menu>COM_RAPLEAF</menu>
 		<files folder="administrator/components/com_rapleaf">
 			<folder>controllers</folder>
 			<folder>databases</folder>
@@ -27,4 +28,4 @@
 			</language>
 		</languages>
 	</administration>
-</extension>
+</install>
