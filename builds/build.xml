@@ -23,6 +23,8 @@
 		<copy todir="${destination.dir.component}/administrator/components/${component.name}/">
 			<fileset dir="${project.basedir}/administrator/components/${component.name}" >
 				<include name="**/*.*"/>
+				<exclude name="manifest.xml" />
+				
 <!--				<exclude name="*.*" />-->
 				<exclude name="nbproject" />
 			</fileset>
@@ -31,6 +33,7 @@
 		<copy todir="${destination.dir.component}/" >
 			<fileset dir="${project.basedir}/administrator/components/${component.name}">
 				<include name="*.*" />
+				<exclude name="toolbar.rapleaf.php" />
 			</fileset>
 		</copy>
 		

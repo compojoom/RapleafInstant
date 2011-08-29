@@ -36,24 +36,13 @@ foreach ($currentReportData->gender as $value) {
 }
 ?>
 
-<table class="adminlist" style="width:320px">
-	<thead>
-	<th></th>
-	<th>
-		<?php echo $this->currentReport->date; ?>
-	</th>
-	<th width="15px">
-	</th>
-	<th>
-		<?php echo $this->oldReport->date; ?>
-	</th>
-	</thead>
+<table class="rapleaf-table" style="width:350px">
 	<tbody>
 
 		<?php foreach ($stats as $key => $value) : ?>
 			<tr>
-				<td>
-					age
+				<td width="45px;">
+					<?php echo JText::_('COM_RAPLEAF_AGE'); ?>
 				</td>
 				<td colspan="3">
 					<span class="bold"><?php echo $key; ?></span>
@@ -61,19 +50,19 @@ foreach ($currentReportData->gender as $value) {
 				</td>
 			</tr>
 			<tr>
-				<td>
-					Male
+				<td width="45px;">
+					<?php echo JText::_('COM_RAPLEAF_MALE'); ?>
 				</td>
 				<td align="right"> <span class="bold"><?php echo $value['new']['male']; ?></span></td>
-				<td>
+				<td width="15px">
 					<span class="<?php echo $value['male']['development']; ?>"></span>
 				</td>
 				<td><span class="bold"><?php echo $value['old']['male']; ?></span></td>
 			</tr>
-			<tr>
-				<td>Female</td>
-				<td align="right"><span class="bold"><?php echo $value['new']['female']; ?></span></td>
-				<td><span class="<?php echo $value['female']['development']; ?>"></span></td>
+			<tr class="bottom-line">
+				<td  width="45px;"><?php echo JText::_('COM_RAPLEAF_FEMALE'); ?></td>
+				<td align="right" width="90px;"><span class="bold"><?php echo $value['new']['female']; ?></span></td>
+				<td  width="15px"><span class="<?php echo $value['female']['development']; ?>"></span></td>
 				<td><span class="bold"><?php echo $value['old']['female']; ?></span></td>
 			</tr>
 		<?php endforeach; ?>

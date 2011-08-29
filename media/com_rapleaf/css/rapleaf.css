@@ -1,10 +1,12 @@
-#age,
-#gender,
-#map{
+.age-chart,
+.gender-chart,
+.map-chart{
 	float: left;
-	margin-right: 10px;
 }
-
+.age-chart {
+	margin-right: 60px;
+	margin-bottom: 50px;
+}
 #rapleaf-generate-report {
 	width: 200px;
 	height: 200px;
@@ -143,4 +145,62 @@ span.fadein {
 
 .icon-32-rerportGenerator {
 	background: url('../images/report_add.png') no-repeat;
+}
+
+.report-info {
+	width: 900px;
+}
+
+.report-info div {
+	background: #FFF;
+}
+
+.analysis {
+	width: 350px;
+	float: left;
+	margin-right: 60px;
+	padding-right: 50px;
+	padding-left: 20px;
+}
+.analysis h2 {
+	margin-right: 0!important;
+	margin-left: 0!important;
+}
+
+.analysis p {
+	margin-left: 0!important;
+}
+.comparison-info {
+	float: left;
+	width: 420px;
+	margin-bottom: 50px;
+}
+.comparison-info table {
+	margin-left: 20px;
+}
+.clear-both {
+	clear: both;
+}
+
+.report-info h2 {
+	color: #1C5985;
+	border-bottom: 1px solid #1C5985;
+	margin-left: 20px;
+	margin-right: 50px;
+	font-size: 20px;
+}
+
+.bottom-line td {
+	border-bottom: 1px solid #CBCDCC;
+}
+
+.rapleaf-table td {
+	padding: 5px 5px 0 5px;
+}
+.rapleaf-table {
+	margin-bottom: 20px;
+}
+
+#form-compare {
+	display: inline-block;
 }

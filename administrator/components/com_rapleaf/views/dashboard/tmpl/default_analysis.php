@@ -44,13 +44,17 @@ if($percentageFemale < 30){
 } elseif ($percentageFemale > 70) {
 	$genderText = JText::_('COM_RAPLEAF_GENDER_ANALYSIS_MORE_THAN_70');
 }
+
+$user = JFactory::getUser();
 ?>
-<div class="analysis">
+<div class="analysis" id="analysis">
+	<h2><?php echo JText::_('COM_RAPLEAF_QUICK_OVERVIEW');?></h2>
 	<p>
-		Your site has <?php echo $report->joomlaUsers; ?> users
+		<?php echo JText::sprintf('COM_RAPLEAF_DEAR',$user->name); ?>
 	</p>
 	<p>
-		Rapleaf could find information for <?php echo $report->rapleafUsers; ?> users
+		<?php echo JText::sprintf('COM_RAPLEAF_QUICK_USER_REPORT', $report->joomlaUsers, $report->rapleafUsers); ?>
+		
 	</p>
 	<p>
 		<?php echo $ageAnalysis; ?>

@@ -14,18 +14,15 @@ Rapleaf = new Class( {
 			var request = new Request.JSON({
 				'url': this.options.url + 'index.php?option=com_rapleaf&view=users&task=count&format=raw',
 				onRequest: function() {
-					self.spanElement('Calculating how many joomla users you have');
-//					document.id('rapleaf-report-info').set('html', '')
+					self.spanElement(rapleafLanguage.calculateJoomlausers);
 				},
 				onSuccess: function(json) {
 					if(json.status == 'success') {
-						self.spanElement('You have ' + json.number + 'users. ');
-//						document.id('rapleaf-report-info').set('html', );
+						self.spanElement(rapleafLanguage.youHave + ' ' + json.number + ' '+rapleafLanguage.users);
 						self.joomlaUsers = json.number;
 						self.fireEvent('getRapleafData');
 					} else {
-						self.spanElement('Something went wrong');
-//						document.id('rapleaf-report-info').set('html', 'Something went wrong')
+						self.spanElement(rapleafLanguage.wrong);
 					}
 				}
 			}).send();
@@ -35,13 +32,11 @@ Rapleaf = new Class( {
 			var request = new Request.JSON({
 				'url': this.options.url + 'index.php?option=com_rapleaf&view=rapleaf&task=getUserData&format=raw',
 				onRequest: function() {
-					self.spanElement('Contacting rapleaf to get user data');
-//					document.id('rapleaf-report-info').set('html', 'Contacting rapleaf to get user data');
+					self.spanElement(rapleafLanguage.getData);
 				},
 				onSuccess: function(json) {
 					if(json.status == 'success') {
-						self.spanElement('Rapleaf response was good. We have saved the users in the database');
-//						document.id('rapleaf-report-info').set('html', 'Rapleaf response was good. We have saved the users in the database');
+						self.spanElement(rapleafLanguage.rapleafResponseGood);
 //						reset rapleaf's error counter
 						self.errors.rapleaf = 0;
 						self.offset += self.maxRequestsAtOnce;
@@ -53,18 +48,14 @@ Rapleaf = new Class( {
 					} else {
 						if (json.type == 'rapleaf') {
 							if(self.errors.rapleaf < 3) {
-								self.spanElement('There was something wrong with the request to rapleaf. We will try again to get the data.');
-//								document.id('rapleaf-report-info').set('html', 'There was something wrong with the request to rapleaf. We will try again to get the data.');
+								self.spanElement(rapleafLanguage.contactSomethingWrong);
 								self.errors.rapleaf +=1;
 								self.fireEvent('getRapleafData');
 							} else {
-								self.spanElement('Unfortunatly for some reason the rapleaf service is not available. Please try later.');
-
-//								document.id('rapleaf-report-info').set('html', 'Unfortunatly for some reason the rapleaf service is not available. Please try later.');
-							}
+								self.spanElement(rapleafLanguage.rapleafNotAvailable);
+						}
 						} else {
-							self.spanElement('Something went wrong');
-//							document.id('rapleaf-report-info').set('html', 'Something went wrong')
+							self.spanElement(rapleafLanguage.wrong);
 						}
 						
 					}
@@ -77,17 +68,17 @@ Rapleaf = new Class( {
 			var request = new Request.JSON({
 				'url': this.options.url + 'index.php?option=com_rapleaf&view=report&task=generateReport&format=raw',
 				onRequest: function() {
-					document.id('rapleaf-report-info').set('html', 'Contacting rapleaf to get user data')
+					document.id('rapleaf-report-info').set('html', rapleafLanguage.generateReport)
 				},
 				onSuccess: function(json) {
 					if(json == 'success') {
-						document.id('rapleaf-report-info').set('html', 'Report generated. We will refresh the page in 3 seconds ');
+						document.id('rapleaf-report-info').set('html', rapleafLanguage.reportGenerated);
 						setTimeout(function() {
 							window.location.reload(true);
 						}, 3000);
 						this.fireEvent('generateReport');
 					} else {
-						document.id('rapleaf-report-info').set('html', 'Something went wrong')
+						document.id('rapleaf-report-info').set('html', rapleafLanguage.wrong)
 					}
 					
 				}
@@ -103,7 +94,23 @@ Rapleaf = new Class( {
 		
 		this.attachEvent();
 		
+		this.correctHeight();
+	},	
+	
+	correctHeight: function() {
+		var analysis = document.id('analysis');
+		var comparison = document.id('comparison-info');
 		
+		if(analysis && comparison) {
+			var analysisHeight = analysis.getSize().y;
+			var comparisonHeight = comparison.getSize().y;
+
+			if(comparisonHeight > analysisHeight) {
+				analysis.setStyle('height', comparisonHeight);
+			} else if(comparisonHeight > analysisHeight) {
+				comparison.setStyle('height', analysisHeight);
+			}
+		}
 	},
 	
 	attachEvent: function() {
@@ -173,8 +180,7 @@ Rapleaf = new Class( {
 		
 		document.id('rapleaf-report-info').adopt(element.fade(1));
 		
-		document.getElementById('rapleaf-report-info').scrollTop = document.getElementById('rapleaf-report-info').scrollHeight;
-//		return element;
+		document.id('rapleaf-report-info').scrollTop = document.id('rapleaf-report-info').scrollHeight;
 	},
 	
 	effects: function() {
@@ -182,7 +188,7 @@ Rapleaf = new Class( {
 			'class': 'rapleaf-close',
 			events: {
 				click : function(){
-//					div.destroy();
+					div.destroy();
 				}
 			}
 		});
@@ -216,18 +222,10 @@ Rapleaf = new Class( {
 		}).adopt([spinnerContainer,spanTitle,close,info ]);
 		
 		var div = new Element('div', {
-			'class':'rapleaf-overlay',
-			events: {
-				click : function(){
-					div.destroy();
-				}
-			}
+			'class':'rapleaf-overlay'
 		}).adopt(container);
 		
 		div.inject(document.body);
-		
-		
-//		
-//		document.id('rapleaf-report-info').appendChild(spinner.el);
+
 	}
 })

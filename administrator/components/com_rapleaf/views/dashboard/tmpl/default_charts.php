@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php $report = json_decode($this->lastReport->report); ?>
 <?php
-JHTML::script('jsapi','https://www.google.com/');
+JHTML::script('jsapi', 'https://www.google.com/');
 
 $document = JFactory::getDocument();
 
@@ -28,7 +28,7 @@ $domready = <<<ABC
 		});
 
 		var chart = new google.visualization.PieChart(document.getElementById('age'));
-		chart.draw(data, {width: 450, height: 300, title: 'Age'});
+		chart.draw(data, {width: 420, height: 300});
 		google.visualization.events.addListener(chart, 'select', function() {
 			var selection = chart.getSelection();
 			var age = data.getValue(selection[0].row,0);
@@ -52,7 +52,7 @@ $domready = <<<ABC
 		});
 
 		var genderChart = new google.visualization.ColumnChart(document.getElementById('gender'));
-		genderChart.draw(data, {width: 450, height: 300, title: 'Gender',
+		genderChart.draw(data, {width: 420, height: 300,
 					hAxis: {title: 'Age', titleTextStyle: {color: 'red'}}});
 		google.visualization.events.addListener(genderChart, 'select', function() {
 			var selection = genderChart.getSelection();
@@ -77,7 +77,7 @@ $domready = <<<ABC
 			i++;
 		});
 		
-		var options = {width: 556, height: 347};
+		var options = {width: 900, height: 450};
 
 		var container = document.getElementById('map');
 		var geochart = new google.visualization.GeoChart(container);
@@ -94,8 +94,16 @@ ABC;
 
 $document->addScriptDeclaration($domready);
 ?>
-<div class="charts">
+<div class="age-chart">
+	<h2>Age Groups</h2>
 	<div id="age"></div>
+</div>
+<div class="gender-chart">
+	<h2>Gender & Age Groups</h2>
 	<div id="gender"></div>
+</div>
+<div class="clear-both"></div>
+<div class="map-chart">
+	<h2>Member's countries</h2>
 	<div id="map"></div>
 </div>

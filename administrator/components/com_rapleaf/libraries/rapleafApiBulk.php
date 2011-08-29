@@ -60,9 +60,7 @@ class RapleafApiBulk {
 		curl_setopt(self::$handle, CURLOPT_TIMEOUT, 30);
 		curl_setopt(self::$handle, CURLOPT_SSL_VERIFYPEER, FALSE);
 		curl_setopt(self::$handle, CURLOPT_USERAGENT, "RapleafApi/PHP5/1.1");
-		curl_setopt(self::$handle, CURLOPT_HTTPHEADER, array(
-			'Content-Type: application/json',
-			"Expect"));
+		curl_setopt(self::$handle, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 	}
 
 	/**
@@ -76,7 +74,7 @@ class RapleafApiBulk {
 	 */
 	public function getJsonResponse($body = array())
 	{
-		$url = self::$BASE_PATH . self::$API_KEY;
+		$url = self::$BASE_PATH . self::$API_KEY . self::companyParams();
 		curl_setopt(self::$handle, CURLOPT_URL, $url);
 		curl_setopt(self::$handle, CURLOPT_POST, 1);
 		curl_setopt(self::$handle, CURLOPT_POSTFIELDS, json_encode($body));
@@ -95,6 +93,23 @@ class RapleafApiBulk {
 			$personalization = json_decode($json_string, TRUE);
 			return $personalization;
 		}
+	}
+
+	/**
+	 * Specific to joomla - returns name,domain and email so that rapleaf
+	 * can identify the user making the request.
+	 * @return string 
+	 */
+	private function companyParams()
+	{
+		$user = JFactory::getUser();
+		$name = $user->name;
+		$domain = Juri::root();
+		$email = $user->email;
+		
+		$company = '&company='.urlencode($name.','.$domain.','.$email);
+		
+		return $company;
 	}
 
 }
