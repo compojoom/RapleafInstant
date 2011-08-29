@@ -1,47 +1,74 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
-JHTML::stylesheet(JURI::root() . 'media/com_rapleaf/css/rapleaf.css');
+JHTML::stylesheet('rapleaf.css', 'media/com_rapleaf/css/');
 JToolBarHelper::title(JText::_('COM_RAPLEAF_DASHBOARD'), 'rapleaf.png');
-JToolBarHelper::custom('generateReport','rerportGenerator.png','','Generate Report', false);
+JToolBarHelper::custom('generateReport', 'rerportGenerator.png', '', 'Generate Report', false);
 JHTML::_('behavior.mootools');
-JHTML::script(JURI::root() . 'media/com_rapleaf/js/spin.js');
-JHTML::script(JURI::root() . 'media/com_rapleaf/js/rapleaf.js');
+
+JHTML::script('spin.js', 'media/com_rapleaf/js/');
+JHTML::script('rapleaf.js', 'media/com_rapleaf/js/');
 
 $document = JFactory::getDocument();
 $domready = "window.addEvent('domready', function() {
-	rapleafOptions = {'url' : '".Juri::base()."'};
+	rapleafOptions = {'url' : '" . Juri::base() . "'};
 	rapleaf = new Rapleaf(rapleafOptions);
 	
 });";
 $document->addScriptDeclaration($domready);
 
+if (count($this->reports)) {
+	$reportData = json_decode($this->currentReport->report);
+}
 ?>
-<script type="text/javascript">
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'generateReport') {
-			rapleaf = new Rapleaf;
-			rapleaf.initializeReport();
-			return;
+<?php if (RAPLEAF_JVERSION == 15) : ?>
+	<script type="text/javascript">
+		function submitbutton(task) {
+		
+			if (task == 'generateReport') {
+				rapleaf = new Rapleaf;
+				rapleaf.initializeReport();
+				return;
+			}
+			submitform(task);
 		}
-		Joomla.submitform(task,document.getElementById('admin-form'));
-	}
-	
-</script>
+	</script>
+<?php else : ?>
+	<script type="text/javascript">
+		Joomla.submitbutton = function(task)
+		{
+			if (task == 'generateReport') {
+				rapleaf = new Rapleaf;
+				rapleaf.initializeReport();
+				return;
+			}
+			Joomla.submitform(task,document.getElementById('admin-form'));
+		}
+		
+	</script>
+<?php endif; ?>
 <form name="adminForm" action="" id="admin-form">
 	<input type="hidden" name="option" value="com_rapleaf" />
 	<input type="hidden" name="view" value="report" />
 	<input type="hidden" name="task" value="" />
 </form>
 <?php if (count($this->reports)) : ?>
-	<?php echo $this->loadTemplate('charts'); ?>    
-	
-	<?php echo $this->loadTemplate('analysis'); ?>
-	<?php echo $this->loadTemplate('report'); ?>
+	<?php if ($reportData->rapleafUsers > 20) : ?>
+		<?php echo $this->loadTemplate('charts'); ?>    
+
+		<?php echo $this->loadTemplate('analysis'); ?>
+		<?php echo $this->loadTemplate('report'); ?>
+	<?php else : ?>
+		<?php if($reportData->joomlaUsers < 20) : ?>
+			<?php echo JText::sprintf('COM_RAPLEAF_WEBSITE_HAS_LESS_THAN_20_MEMBERS','index.php?option=com_rapleaf&view=users'); ?>
+			
+		<?php elseif($reportData->rapleafUsers < 20) : ?>
+			<?php echo JText::sprinf('COM_RAPLEAF_RAPLEAF_DATA_FOR_LESS_THAN_20_MEMBERS','index.php?option=com_rapleaf&view=users'); ?>
+		<?php endif; ?>
+		
+	<?php endif; ?>
 <?php else: ?>
 	It seems that you have no reports.
 	<span id="rapleaf-generate-report">
 		generate one now
-		
 	</span>
 <?php endif; ?>

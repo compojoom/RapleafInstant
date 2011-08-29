@@ -17,7 +17,10 @@ defined('_JEXEC') or die;
  */
 class RapleafTableReports extends JTable
 {
-
+	public $rapleaf_report_id;
+	public $date;
+	public $report;
+	
 	function __construct(&$_db)
 	{
 		parent::__construct('#__rapleaf_reports', 'rapleaf_report_id', $_db);

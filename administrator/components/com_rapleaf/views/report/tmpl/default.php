@@ -1,6 +1,5 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
-JHTML::stylesheet(JURI::root() . 'media/com_rapleaf/css/rapleaf.css');
 
 $oldReportData = json_decode($this->oldReport->report);
 $currentReportData = json_decode($this->currentReport->report);
@@ -37,48 +36,46 @@ foreach ($currentReportData->gender as $value) {
 }
 ?>
 
-	
+<table class="adminlist" style="width:320px">
+	<thead>
+	<th></th>
+	<th>
+		<?php echo $this->currentReport->date; ?>
+	</th>
+	<th width="15px">
+	</th>
+	<th>
+		<?php echo $this->oldReport->date; ?>
+	</th>
+	</thead>
+	<tbody>
 
-	<table class="adminlist" style="width:320px">
-		<thead>
-		<th></th>
-		<th>
-			<?php echo $this->currentReport->date; ?>
-		</th>
-		<th width="15px">
-		</th>
-		<th>
-			<?php echo $this->oldReport->date; ?>
-		</th>
-		</thead>
-		<tbody>
+		<?php foreach ($stats as $key => $value) : ?>
+			<tr>
+				<td>
+					age
+				</td>
+				<td colspan="3">
+					<span class="bold"><?php echo $key; ?></span>
 
-			<?php foreach ($stats as $key => $value) : ?>
-				<tr>
-					<td>
-						age
-					</td>
-					<td colspan="3">
-						<span class="bold"><?php echo $key; ?></span>
-
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Male
-					</td>
-					<td align="right"> <span class="bold"><?php echo $value['new']['male']; ?></span></td>
-					<td>
-						<span class="<?php echo $value['male']['development']; ?>"></span>
-					</td>
-					<td><span class="bold"><?php echo $value['old']['male']; ?></span></td>
-				</tr>
-				<tr>
-					<td>Female</td>
-					<td align="right"><span class="bold"><?php echo $value['new']['female']; ?></span></td>
-					<td><span class="<?php echo $value['female']['development']; ?>"></span></td>
-					<td><span class="bold"><?php echo $value['old']['female']; ?></span></td>
-				</tr>
-			<?php endforeach; ?>
-		</tbody>
-	</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Male
+				</td>
+				<td align="right"> <span class="bold"><?php echo $value['new']['male']; ?></span></td>
+				<td>
+					<span class="<?php echo $value['male']['development']; ?>"></span>
+				</td>
+				<td><span class="bold"><?php echo $value['old']['male']; ?></span></td>
+			</tr>
+			<tr>
+				<td>Female</td>
+				<td align="right"><span class="bold"><?php echo $value['new']['female']; ?></span></td>
+				<td><span class="<?php echo $value['female']['development']; ?>"></span></td>
+				<td><span class="bold"><?php echo $value['old']['female']; ?></span></td>
+			</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>

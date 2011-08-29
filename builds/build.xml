@@ -15,7 +15,7 @@
 	</target>
 	
 	<target name="_buildZip" depends="_build, _buildMedia" description="">
-		<zip destfile="${destination.dir}/${component.name}${component.version}.zip" basedir="${destination.dir.component}"  />
+		<zip destfile="${destination.dir}/${component.name}-${component.version}.zip" basedir="${destination.dir.component}"  />
 	</target>
 
 	<target name="_build" depends="_preparedirs" description="">
@@ -23,7 +23,7 @@
 		<copy todir="${destination.dir.component}/administrator/components/${component.name}/">
 			<fileset dir="${project.basedir}/administrator/components/${component.name}" >
 				<include name="**/*.*"/>
-				<exclude name="*.*" />
+<!--				<exclude name="*.*" />-->
 				<exclude name="nbproject" />
 			</fileset>
 		</copy>
@@ -37,6 +37,7 @@
 		<!-- build admin language files -->
 		<copy todir="${destination.dir.component}/administrator/language/" >
 			<fileset dir="${project.basedir}/administrator/language/" includes="**/*.${component.name}.ini"/>
+			<fileset dir="${project.basedir}/administrator/language/" includes="**/*.${component.name}.menu.ini"/>
 			<fileset dir="${project.basedir}/administrator/language/" includes="**/*.${component.name}.sys.ini"/>
 		</copy>
 		

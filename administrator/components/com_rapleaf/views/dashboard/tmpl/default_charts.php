@@ -1,8 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php $report = json_decode($this->lastReport->report); ?>
 <?php
-JHTML::stylesheet(JURI::root() . 'media/com_rapleaf/css/rapleaf.css');
-JHTML::script('https://www.google.com/jsapi');
+JHTML::script('jsapi','https://www.google.com/');
 
 $document = JFactory::getDocument();
 

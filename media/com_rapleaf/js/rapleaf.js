@@ -94,7 +94,7 @@ Rapleaf = new Class( {
 			}).send();
 		},
 		
-		'url' : 'http://localhost/rapleaf-joomla/administrator/'
+		'url' : ''
 	},
 	
 	initialize: function(options) {

@@ -42,7 +42,7 @@ class MootoolsRapleafHelper {
 			if (!self::isMootools12Activated()) {
 				$appl = JFactory::getApplication();
 				$url = JRoute::_('index.php?option=com_plugins&search=system - mootools upgrade');
-				$warning = JText::sprintf('COM_HOTSPOTS_MOOTOOLS12_IS_NOT_ACTIVATED', $url);
+				$warning = JText::sprintf('COM_RAPLEAF_MOOTOOLS12_IS_NOT_ACTIVATED', $url);
 
 				$appl->enqueueMessage($warning, 'error');
 				return false;

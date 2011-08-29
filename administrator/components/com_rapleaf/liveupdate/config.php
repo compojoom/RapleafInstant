@@ -12,9 +12,9 @@ defined('_JEXEC') or die();
  */
 class LiveUpdateConfig extends LiveUpdateAbstractConfig
 {
-	var $_extensionName			= 'com_hotspots';
-	var $_extensionTitle		= 'Hotspots';
-	var $_updateURL				= 'http://compojoom.com/index.php?option=com_ars&view=update&format=ini&id=4';
-	var $_requiresAuthorization	= true;
+	var $_extensionName			= 'com_rapleaf';
+	var $_extensionTitle		= 'Rapleaf';
+	var $_updateURL				= 'http://compojoom.com/index.php?option=com_ars&view=update&format=ini&id=6';
+	var $_requiresAuthorization	= false;
 	var $_versionStrategy		= 'different';
 }

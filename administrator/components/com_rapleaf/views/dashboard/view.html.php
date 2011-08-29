@@ -36,7 +36,8 @@ class RapleafViewDashboard extends JView
 	{
 		$model = $this->getModel();
 		
-		$reports = $model->getReports();
+		$originalReports = $model->getReports();
+		$reports = $originalReports;
 		
 		$lastReport = array_pop($reports);
 		
@@ -45,7 +46,7 @@ class RapleafViewDashboard extends JView
 		$this->assignRef('oldReport', array_pop($reports));
 		$this->assignRef('lastReport', $lastReport);
 		$this->assignRef('currentReport', $lastReport);
-		$this->assignRef('reports', $reports);
+		$this->assignRef('reports', $originalReports);
 		return parent::display();
 	}
 	

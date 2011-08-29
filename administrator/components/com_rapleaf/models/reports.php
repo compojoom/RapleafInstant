@@ -81,7 +81,7 @@ class RapleafModelReports extends JModel {
 		);
 		
 		$table = JTable::getInstance('Reports', 'RapleafTable');
-		
+
 		$table->bind($rowData);
 		
 		return $table->store();

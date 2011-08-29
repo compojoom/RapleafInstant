@@ -34,7 +34,8 @@ $view	= JRequest::getCmd('view');
 
 $subMenus = array (
 	'dashboard' => 'COM_RAPLEAF_DASHBOARD',
-	'users' => 'COM_RAPLEAF_USERS'
+	'users' => 'COM_RAPLEAF_USERS',
+	'liveupdate' => 'COM_RAPLEAF_LIVE_UPDATE'
 );
 
 foreach($subMenus as $key => $name) {

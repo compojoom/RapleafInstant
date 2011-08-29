@@ -40,7 +40,7 @@ class RapleafControllerDashboard extends JController {
 		$viewName = 'dashboard';
 		$viewLayout = JRequest::getCmd('layout', 'default');
 
-		$view = $this->getView($viewName, $viewType, '', array('base_path' => $this->basePath));
+		$view = $this->getView($viewName, $viewType, '');
 
 		$model = $this->getModel('reports');
 		$view->setModel($model, true);

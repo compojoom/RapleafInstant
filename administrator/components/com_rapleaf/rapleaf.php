@@ -33,7 +33,7 @@ MootoolsRapleafHelper::checkMootools();
 
 require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'liveupdate'.DS.'liveupdate.php';
 if(JRequest::getCmd('view','') == 'liveupdate') {
-	JToolBarHelper::preferences( 'com_rapleaf' );
+//	JToolBarHelper::preferences( 'com_rapleaf' );
     LiveUpdate::handleRequest();
     return;
 }
@@ -43,9 +43,6 @@ if(JRequest::getCmd('view','') == 'liveupdate') {
 // thank you for this black magic Nickolas :)
 // Magic: merge the default translation with the current translation
 $jlang =& JFactory::getLanguage();
-$jlang->load('com_rapleaf', JPATH_SITE, 'en-GB', true);
-$jlang->load('com_rapleaf', JPATH_SITE, $jlang->getDefault(), true);
-$jlang->load('com_rapleaf', JPATH_SITE, null, true);
 $jlang->load('com_rapleaf', JPATH_ADMINISTRATOR, 'en-GB', true);
 $jlang->load('com_rapleaf', JPATH_ADMINISTRATOR, $jlang->getDefault(), true);
 $jlang->load('com_rapleaf', JPATH_ADMINISTRATOR, null, true);
