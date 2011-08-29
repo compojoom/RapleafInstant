@@ -9,7 +9,8 @@ JHTML::script(JURI::root() . 'media/com_rapleaf/js/rapleaf.js');
 
 $document = JFactory::getDocument();
 $domready = "window.addEvent('domready', function() {
-	rapleaf = new Rapleaf;
+	rapleafOptions = {'url' : '".Juri::base()."'};
+	rapleaf = new Rapleaf(rapleafOptions);
 	
 });";
 $document->addScriptDeclaration($domready);

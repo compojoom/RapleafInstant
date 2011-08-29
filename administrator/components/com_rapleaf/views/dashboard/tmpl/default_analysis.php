@@ -12,14 +12,18 @@ foreach ($report->age as $value) {
 	$age[$value->age]['percentage'] = ($value->count * 100) / $totalUsersInAgeGroups;
 }
 
-$maxKey = max_key($age);
+if(count($age)) {
+	$maxKey = max_key($age);
 
-if($age[$maxKey]['percentage'] > 25) {
-	$ageGroup = str_replace('+','',str_replace('-','_',$maxKey));
-	
-	$ageAnalysis = JText::sprintf('COM_RAPLEAF_CRITERIA_AGE_'.$ageGroup, number_format($age[$maxKey]['percentage'],1).'%');
+	if($age[$maxKey]['percentage'] > 25) {
+		$ageGroup = str_replace('+','',str_replace('-','_',$maxKey));
+
+		$ageAnalysis = JText::sprintf('COM_RAPLEAF_CRITERIA_AGE_'.$ageGroup, number_format($age[$maxKey]['percentage'],1).'%');
+	} else {
+		$ageAnalysis = JText::_('COM_RAPLEAF_NONE_AGE_CRITERIA_MET');
+	}
 } else {
-	$ageAnalysis = JText::_('COM_RAPLEAF_NONE_AGE_CRITERIA_MET');
+	$ageAnalysis = '';
 }
 function max_key($array)
 {

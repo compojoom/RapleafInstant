@@ -113,29 +113,6 @@ class RapleafModelUsers extends JModel {
 		return $this->_pagination;
 	}
 
-//	public function getState() {
-//		
-//	}
-//	protected function populateState($ordering = null, $direction = null)
-//	{
-//		// Initialise variables.
-//		$app = JFactory::getApplication('administrator');
-//
-//		// Load the filter state.
-//		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
-//		$this->setState('filter.search', $search);
-//
-//		$state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
-//		$this->setState('filter.state', $state);
-//
-//		// Load the parameters.
-//		$params = JComponentHelper::getParams('com_banners');
-//		$this->setState('params', $params);
-//
-//		// List state information.
-//		parent::populateState('a.name', 'asc');
-//	}
-
 	protected function _buildQueryColumns(KDatabaseQuery $query)
 	{
 		$query->select(array(
@@ -214,7 +191,9 @@ class RapleafModelUsers extends JModel {
 		$db->setQuery($query);
 
 		$this->_gender = $db->loadAssocList();
-
+		$newArray = array();
+		$gender = array();
+		
 		foreach ($this->_gender as $key => $value) {
 			if ($value['gender'] == 1) {
 				$gender[$value['age']]['male'] = $value['count'];
@@ -222,6 +201,7 @@ class RapleafModelUsers extends JModel {
 				$gender[$value['age']]['female'] = $value['count'];
 			}
 		}
+		
 		foreach ($gender as $key => $value) {
 			$newArray[] = array(
 				'age' => $key,

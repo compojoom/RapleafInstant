@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="component" version="1.5" method="upgrade">
 	<name>Rapleaf</name>
-	<author>Compojoomla</author>
+	<author>Compojoom</author>
 	<creationDate>2011-06-15</creationDate>
 	<copyright>(C) 2011 Compojoom.com All rights reserved.	</copyright>
 	<license>GNU General Public License version 2 or later; see	LICENSE.txt</license>
@@ -13,19 +13,42 @@
 		<menu>COM_RAPLEAF</menu>
 		<files folder="administrator/components/com_rapleaf">
 			<folder>controllers</folder>
-			<folder>databases</folder>
+			<folder>helpers</folder>
+			<folder>includes</folder>
 			<folder>libraries</folder>
+			<folder>liveupdate</folder>
 			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
 			<folder>views</folder>
+			<filename>index.html</filename>
+			<filename>manifest.xml</filename>
+			<filename>rapleaf.php</filename>
+			<filename>toolbar.rapleaf.php</filename>
 		</files>
 		<files>
-			<filename>config.xml</filename>
 			<filename>index.html</filename>
+			<filename>manifest.xml</filename>
 			<filename>rapleaf.php</filename>
+			<filename>toolbar.rapleaf.php</filename>
 		</files>
 		<languages folder="administrator/language/">
-			<language tag="en-GB">en-GB/en-GB.com_rapleaf.ini
-			</language>
+			<language tag="en-GB">en-GB/en-GB.com_rapleaf.ini</language>
 		</languages>
 	</administration>
+	<media destination="com_rapleaf" folder="media/com_rapleaf">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+	</media>
+	<install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
 </install>
