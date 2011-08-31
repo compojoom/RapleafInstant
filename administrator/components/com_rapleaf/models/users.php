@@ -139,21 +139,31 @@ class RapleafModelUsers extends JModel {
 				$words = explode(':', $searchWord);
 				
 				$search = $db->quote('%' . $db->getEscaped($words[1]) . '%');
-				$tableColumns = $db->getTableColumns('#__rapleaf_users');
-				if (!in_array($words[0], array('name', 'username', 'email'))) {
-					if (isset($tableColumns[$words[0]])) {
-						if ($words[0] == 'gender') {
-							if ($words[1] == 'male') {
+//				die('test');
+				var_dump();
+				if(RAPLEAF_JVERSION == 15) {
+					$tableColumns = $db->getTableFields('#__rapleaf_users');
+					$tableColumns = $tableColumns['#__rapleaf_users'];
+				} else {
+					$tableColumns = $db->getTableColumns('#__rapleaf_users');
+				}
+				
+				$word0 = trim($words[0]);
+				$word1 = trim($words[1]);
+				if (!in_array($word0, array('name', 'username', 'email'))) {
+					if (isset($tableColumns[$word0])) {
+						if ($word0 == 'gender') {
+							if ($word1 == 'male') {
 								$search = 1;
 							} else {
 								$search = 2;
 							}
 						}
 						
-						$where[] = $words[0] . ' LIKE ' . $search;
+						$where[] = $word0 . ' LIKE ' . $search;
 					}
 				} else {
-					$where[] = 'ju.' . $words[0] . ' LIKE ' . $search;
+					$where[] = 'ju.' . $word0 . ' LIKE ' . $search;
 				}
 			} else {
 				$search = $db->quote('%' . $db->getEscaped($searchWord) . '%');
@@ -278,7 +288,7 @@ class RapleafModelUsers extends JModel {
 //			save just the country
 			if (isset($user['location'])) {
 				$location = explode(',', ($user['location']));
-				$location = array_pop($location);
+				$location = trim(array_pop($location));
 				$location = $db->quote($location);
 			} else {
 				$location = $db->quote('');
