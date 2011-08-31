@@ -139,8 +139,6 @@ class RapleafModelUsers extends JModel {
 				$words = explode(':', $searchWord);
 				
 				$search = $db->quote('%' . $db->getEscaped($words[1]) . '%');
-//				die('test');
-				var_dump();
 				if(RAPLEAF_JVERSION == 15) {
 					$tableColumns = $db->getTableFields('#__rapleaf_users');
 					$tableColumns = $tableColumns['#__rapleaf_users'];
