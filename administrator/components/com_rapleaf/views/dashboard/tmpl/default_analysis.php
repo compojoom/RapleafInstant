@@ -36,7 +36,7 @@ function max_key($array)
 $percentageFemale = ($report->totalFemale*100)/($report->totalFemale + $report->totalMale);
 
 if($percentageFemale < 30){
-	$genderText = JText::_('COM_RAPLEAF_GENDER_ANALYSIS_LESS_THAN_30');
+	$genderText = JText::sprintf('COM_RAPLEAF_GENDER_ANALYSIS_LESS_THAN_30',number_format($percentageFemale,1).'%');
 }  elseif($percentageFemale > 30 && $percentageFemale < 50) {
 	$genderText = JText::sprintf('COM_RAPLEAF_GENDER_ANALYSIS_31_49',number_format($percentageFemale,1).'%');
 } elseif($percentageFemale > 50 && $percentageFemale < 70) {
@@ -48,7 +48,7 @@ if($percentageFemale < 30){
 $user = JFactory::getUser();
 ?>
 <div class="analysis" id="analysis">
-	<h2><?php echo JText::_('COM_RAPLEAF_QUICK_OVERVIEW');?></h2>
+	<h2><?php echo JText::_('COM_RAPLEAF_SUMMARY');?></h2>
 	<p>
 		<?php echo JText::sprintf('COM_RAPLEAF_DEAR',$user->name); ?>
 	</p>

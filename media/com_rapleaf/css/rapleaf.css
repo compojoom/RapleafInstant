@@ -8,14 +8,36 @@
 	margin-bottom: 50px;
 }
 #rapleaf-generate-report {
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 50px;
 	cursor: pointer;
 	display: block;
-	background: orange;
+	font-size: 24px;
 	margin: auto;
+	background: rgb(77,77,77);
+	padding-left: 10px;
+	padding-top: 20px;
+	color: #FFF;
+	background: -moz-linear-gradient(top, rgba(77,77,77,1) 0%, rgba(84,85,84,1) 42%, rgba(46,46,46,1) 63%, rgba(18,18,18,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(77,77,77,1)), color-stop(42%,rgba(84,85,84,1)), color-stop(63%,rgba(46,46,46,1)), color-stop(100%,rgba(18,18,18,1)));
+	background: -webkit-linear-gradient(top, rgba(77,77,77,1) 0%,rgba(84,85,84,1) 42%,rgba(46,46,46,1) 63%,rgba(18,18,18,1) 100%);
+	background: -o-linear-gradient(top, rgba(77,77,77,1) 0%,rgba(84,85,84,1) 42%,rgba(46,46,46,1) 63%,rgba(18,18,18,1) 100%);
+	background: -ms-linear-gradient(top, rgba(77,77,77,1) 0%,rgba(84,85,84,1) 42%,rgba(46,46,46,1) 63%,rgba(18,18,18,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4d4d', endColorstr='#121212',GradientType=0 );
+	background: linear-gradient(top, rgba(77,77,77,1) 0%,rgba(84,85,84,1) 42%,rgba(46,46,46,1) 63%,rgba(18,18,18,1) 100%);
+	border: 3px solid #FFF;
+	border-radius: 5px;
 }
-
+#rapleaf-generate-report:hover {
+	background: rgb(18,18,18);
+	background: -moz-linear-gradient(top, rgba(18,18,18,1) 0%, rgba(46,46,46,1) 37%, rgba(84,85,84,1) 58%, rgba(77,77,77,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(18,18,18,1)), color-stop(37%,rgba(46,46,46,1)), color-stop(58%,rgba(84,85,84,1)), color-stop(100%,rgba(77,77,77,1)));
+	background: -webkit-linear-gradient(top, rgba(18,18,18,1) 0%,rgba(46,46,46,1) 37%,rgba(84,85,84,1) 58%,rgba(77,77,77,1) 100%);
+	background: -o-linear-gradient(top, rgba(18,18,18,1) 0%,rgba(46,46,46,1) 37%,rgba(84,85,84,1) 58%,rgba(77,77,77,1) 100%);
+	background: -ms-linear-gradient(top, rgba(18,18,18,1) 0%,rgba(46,46,46,1) 37%,rgba(84,85,84,1) 58%,rgba(77,77,77,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121212', endColorstr='#4d4d4d',GradientType=0 );
+	background: linear-gradient(top, rgba(18,18,18,1) 0%,rgba(46,46,46,1) 37%,rgba(84,85,84,1) 58%,rgba(77,77,77,1) 100%);
+}
 .rapleaf-overlay {
 	position: absolute;
 	left: 0;
@@ -172,12 +194,16 @@ span.fadein {
 }
 .comparison-info {
 	float: left;
-	width: 420px;
+	width: 350px;
 	margin-bottom: 50px;
+	padding-right: 50px;
+	padding-left: 20px;
 }
-.comparison-info table {
-	margin-left: 20px;
+.comparison-info h2 {
+	margin-right: 0!important;
+	margin-left: 0!important;
 }
+
 .clear-both {
 	clear: both;
 }
@@ -203,4 +229,28 @@ span.fadein {
 
 #form-compare {
 	display: inline-block;
+}
+
+.rapleaf {
+	position: relative;
+	min-height: 35px;
+}
+
+#rapleaf-logo {
+	background: url('../images/rapleaf.png') no-repeat;
+	width: 90px;
+	height: 32px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#rapleaf-logo a {
+	width: 90px;
+	height: 32px;
+	display: block;
+}
+
+.rapleaf fieldset {
+	border: none;
 }

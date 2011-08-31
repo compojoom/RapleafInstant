@@ -7,7 +7,7 @@ Rapleaf = new Class( {
 //	number of joomla users
 	joomlaUsers : 0,
 	offset: 0,
-	maxRequestsAtOnce: 5,
+	maxRequestsAtOnce: 1000,
 	options : {
 		onUserTableEmpty: function() {
 			var self = this;
@@ -107,7 +107,7 @@ Rapleaf = new Class( {
 
 			if(comparisonHeight > analysisHeight) {
 				analysis.setStyle('height', comparisonHeight);
-			} else if(comparisonHeight > analysisHeight) {
+			} else if(comparisonHeight < analysisHeight) {
 				comparison.setStyle('height', analysisHeight);
 			}
 		}

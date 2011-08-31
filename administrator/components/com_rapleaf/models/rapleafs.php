@@ -44,22 +44,17 @@ class RapleafModelRapleafs extends JModel {
 		foreach($users as $key => $user) {
 			$name = explode(' ', $user->name);
 			$rapleafData[] = array(
-				'email' => $user->email,
-				'first' => isset($name[0]) ? $name[0] : '',
-				'last' => isset($name[1]) ? $name[1] : ''
+				'email' => $user->email
 			);
 			$rapleafData1[] = array(
 				'user_id' => $user->id,
-				'email' => $user->email,
-				'first' => isset($name[0]) ? $name[0] : '',
-				'last' => isset($name[1]) ? $name[1] : ''
+				'email' => $user->email
 			);
 		}
 		try {
 			$rapleafResponse = $api->getJsonResponse($rapleafData);
 		} 
 		catch (Exception $e) {
-//			var_dump($e);
 			$rapleafResponse = false;
 		}
 		
@@ -80,5 +75,4 @@ class RapleafModelRapleafs extends JModel {
 		return $array1;
 	}
 	
-//	public function dro
 }

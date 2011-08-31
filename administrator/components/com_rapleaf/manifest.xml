@@ -10,7 +10,7 @@
 	<version>##VERSION##</version>
 	<description>Rapleaf API integration for Joomla</description>
 	<administration>
-		<menu>COM_RAPLEAF</menu>
+		<menu img="../media/com_rapleaf/images/rapleaf-16px.png">COM_RAPLEAF</menu>
 		<files folder="administrator/components/com_rapleaf">
 			<folder>controllers</folder>
 			<folder>helpers</folder>

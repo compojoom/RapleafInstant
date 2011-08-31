@@ -95,15 +95,15 @@ ABC;
 $document->addScriptDeclaration($domready);
 ?>
 <div class="age-chart">
-	<h2>Age Groups</h2>
+	<h2><?php echo JText::_('COM_RAPLEAF_AGE_GROUPS');?></h2>
 	<div id="age"></div>
 </div>
 <div class="gender-chart">
-	<h2>Gender & Age Groups</h2>
+	<h2><?php echo JText::_('COM_RAPLEAF_GENDER_AND_AGE_GROUPS');?></h2>
 	<div id="gender"></div>
 </div>
 <div class="clear-both"></div>
 <div class="map-chart">
-	<h2>Member's countries</h2>
+	<h2><?php echo JText::_('COM_RAPLEAF_MEMBERS_COUNTRIES'); ?></h2>
 	<div id="map"></div>
 </div>
