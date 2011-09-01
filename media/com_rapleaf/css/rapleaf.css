@@ -236,21 +236,30 @@ span.fadein {
 	min-height: 35px;
 }
 
+.rapleaf h1 {
+	margin-top: 0px;
+}
+
 #rapleaf-logo {
-	background: url('../images/rapleaf.png') no-repeat;
-	width: 90px;
-	height: 32px;
+	background: url('../images/rapleaf_icon_dark.png') no-repeat;
+	width: 135px;
+	height: 33px;
 	position: absolute;
 	right: 0;
 	top: 0;
 }
 
 #rapleaf-logo a {
-	width: 90px;
-	height: 32px;
+	width: 135px;
+	height: 33px;
 	display: block;
 }
 
 .rapleaf fieldset {
 	border: none;
+}
+
+.first-time-run {
+	margin: 0 auto;
+	width: 400px;
 }

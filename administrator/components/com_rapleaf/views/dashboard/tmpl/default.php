@@ -3,7 +3,9 @@ defined('_JEXEC') or die('Restricted access');
 require_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/language.php');
 JHTML::stylesheet('rapleaf.css', 'media/com_rapleaf/css/');
 JToolBarHelper::title(JText::_('COM_RAPLEAF_DASHBOARD'), 'rapleaf.png');
-JToolBarHelper::custom('generateReport', 'rerportGenerator.png', '', 'COM_RAPLEAF_GENERATE_REPORT', false);
+if (count($this->reports)) {
+	JToolBarHelper::custom('generateReport', 'rerportGenerator.png', '', 'COM_RAPLEAF_GENERATE_REPORT', false);
+}
 JHTML::_('behavior.mootools');
 
 JHTML::script('spin.js', 'media/com_rapleaf/js/');
@@ -83,7 +85,16 @@ if (RAPLEAF_JVERSION == 15) {
 
 		<?php endif; ?>
 	<?php else: ?>
-		It seems that you have no reports.
+	<div class="first-time-run">
+		<?php echo JText::_('COM_RAPLEAF_INFO_0_REPORTS'); ?>
+		<br /><br />
+		<input type="checkbox" name="accept" id="rapleaf-accept-terms" />
+		<label id="label-accept" for="rapleaf-accept-terms">
+			<?php echo JText::_('COM_RAPLEAF_ACCEPT_TERMS'); ?>
+			<span style="display:none; color:red;">(<?php echo JText::_('COM_RAPLEAF_NEED_TO_ACCEPT_TERMS'); ?>)</span>
+		</label>
+		<br /><br />
+	</div>
 		<span id="rapleaf-generate-report">
 			<?php echo JText::_('COM_RAPLEAF_ANALYZE_SITE_MEMBERS'); ?>
 		</span>

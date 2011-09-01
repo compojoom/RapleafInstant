@@ -117,7 +117,13 @@ Rapleaf = new Class( {
 		var reportButton = document.id('rapleaf-generate-report');
 		if(reportButton) {
 			reportButton.addEvent('click', function() {
-				this.initializeReport();
+				if(document.id('rapleaf-accept-terms').get('checked') == false) {
+					document.id('label-accept').setStyle('color','red');
+					document.id('label-accept').getElement('span').setStyle('display','inline-block');
+				} else {
+					this.initializeReport();
+				}
+				
 			}.bind(this));
 		}
 		

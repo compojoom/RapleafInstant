@@ -1,4 +1,5 @@
 <?php
+
 /* * *************************************************************
  *  Copyright notice
  *
@@ -25,22 +26,11 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+
 defined('_JEXEC') or die('Restricted access');
 
-$language = JFactory::getLanguage();
-$language->load('com_rapleaf.menu', JPATH_ADMINISTRATOR, null, true);
+jimport('joomla.application.component.controller');
 
-$view	= JRequest::getCmd('view');
+class RapleafControllerAbout extends JController {
 
-$subMenus = array (
-	'dashboard' => 'COM_RAPLEAF_DASHBOARD',
-	'users' => 'COM_RAPLEAF_USERS',
-	'liveupdate' => 'COM_RAPLEAF_LIVE_UPDATE',
-	'about' => 'COM_RAPLEAF_LIVE_ABOUT'
-);
-
-foreach($subMenus as $key => $name) {
-	$active	= ( $view == $key );
-	
-	JSubMenuHelper::addEntry( JText::_($name) , 'index.php?option=com_rapleaf&view=' . $key , $active );
 }
