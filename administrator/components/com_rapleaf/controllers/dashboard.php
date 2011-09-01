@@ -6,7 +6,7 @@
  *  Copyright 2011 Daniel Dimitrov. (http://compojoom.com)
  *  All rights reserved
  *
- *  This script is part of the Hotspots project. The Hotspots project is
+ *  This script is part of com_rapleaf. com_rapleaf is
  *  free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or

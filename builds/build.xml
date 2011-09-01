@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="hotspots"  default="_buildZip" basedir="../">
+<project name="rapleaf"  default="_buildZip" basedir="../">
 	<property file="builds/build.properties" />
 
 	<target name="setup-properties" description="Set up version and build properties">
