@@ -34,6 +34,7 @@
 			<fileset dir="${project.basedir}/administrator/components/${component.name}">
 				<include name="*.*" />
 				<exclude name="toolbar.rapleaf.php" />
+				<exclude name="changelog.php" />
 			</fileset>
 		</copy>
 		

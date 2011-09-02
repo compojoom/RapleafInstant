@@ -76,11 +76,11 @@ if (RAPLEAF_JVERSION == 15) {
 			</div>
 
 		<?php else : ?>
-			<?php if ($reportData->joomlaUsers < 20) : ?>
+			<?php if ($reportData->joomlaUsers <= 20) : ?>
 				<?php echo JText::sprintf('COM_RAPLEAF_WEBSITE_HAS_LESS_THAN_20_MEMBERS', 'index.php?option=com_rapleaf&view=users'); ?>
 
-			<?php elseif ($reportData->rapleafUsers < 20) : ?>
-				<?php echo JText::sprinf('COM_RAPLEAF_RAPLEAF_DATA_FOR_LESS_THAN_20_MEMBERS', 'index.php?option=com_rapleaf&view=users'); ?>
+			<?php elseif ($reportData->rapleafUsers <= 20) : ?>
+				<?php echo JText::sprintf('COM_RAPLEAF_RAPLEAF_DATA_FOR_LESS_THAN_20_MEMBERS', 'index.php?option=com_rapleaf&view=users'); ?>
 			<?php endif; ?>
 
 		<?php endif; ?>

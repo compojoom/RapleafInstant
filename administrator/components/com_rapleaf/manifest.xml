@@ -2,12 +2,12 @@
 <install type="component" version="1.5" method="upgrade">
 	<name>Rapleaf</name>
 	<author>Compojoom</author>
-	<creationDate>##DATE##</creationDate>
+	<creationDate>2011-09-02</creationDate>
 	<copyright>(C) 2011 Compojoom.com All rights reserved.	</copyright>
 	<license>GNU General Public License version 2 or later; see	LICENSE.txt</license>
 	<authorEmail>services@compojoom.com</authorEmail>
 	<authorUrl>http://compojoom.com</authorUrl>
-	<version>##VERSION##</version>
+	<version>1.0.1</version>
 	<description>Rapleaf API integration for Joomla</description>
 	<administration>
 		<menu img="../media/com_rapleaf/images/rapleaf-16px.png">COM_RAPLEAF</menu>
@@ -24,6 +24,7 @@
 			<filename>index.html</filename>
 			<filename>rapleaf.php</filename>
 			<filename>toolbar.rapleaf.php</filename>
+			<filename>changelog.php</filename>
 		</files>
 		<files>
 			<filename>index.html</filename>
@@ -34,6 +35,9 @@
 			<language tag="en-GB">en-GB/en-GB.com_rapleaf.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_rapleaf.menu.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_rapleaf.sys.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_rapleaf.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_rapleaf.menu.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_rapleaf.sys.ini</language>
 		</languages>
 	</administration>
 	<media destination="com_rapleaf" folder="media/com_rapleaf">
