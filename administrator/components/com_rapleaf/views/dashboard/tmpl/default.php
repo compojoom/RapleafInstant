@@ -88,6 +88,9 @@ if (RAPLEAF_JVERSION == 15) {
 	<div class="first-time-run">
 		<?php echo JText::_('COM_RAPLEAF_INFO_0_REPORTS'); ?>
 		<br /><br />
+		<?php echo JText::_('COM_RAPLEAF_INFO_TERMS'); ?>
+		<a href="https://www.rapleaf.com/opt_out">https://www.rapleaf.com/opt_out</a>
+		<br /><br />
 		<input type="checkbox" name="accept" id="rapleaf-accept-terms" />
 		<label id="label-accept" for="rapleaf-accept-terms">
 			<?php echo JText::_('COM_RAPLEAF_ACCEPT_TERMS'); ?>

@@ -263,3 +263,7 @@ span.fadein {
 	margin: 0 auto;
 	width: 400px;
 }
+
+.icon-48-info {
+	background: url('../images/info.png') no-repeat;
+}

@@ -36,7 +36,7 @@ $subMenus = array(
 	'dashboard' => 'COM_RAPLEAF_DASHBOARD',
 	'users' => 'COM_RAPLEAF_USERS',
 	'liveupdate' => 'COM_RAPLEAF_LIVE_UPDATE',
-	'about' => 'COM_RAPLEAF_LIVE_ABOUT'
+	'about' => 'COM_RAPLEAF_ABOUT'
 );
 
 foreach ($subMenus as $key => $name) {
